@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Baloo Bhai 2', cursive;
+}
+
+body{
+    overflow: none;
+}
+
+.Container-wrapper{
+
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .Container{
+        max-width: 100%;
+        width: 100%;
+        min-width: 300px;
+        margin: 0 5px;
+        height: 100vh;
+    }
+    
+    
+}
