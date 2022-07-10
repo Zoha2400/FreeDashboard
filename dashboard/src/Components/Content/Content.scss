@@ -1,7 +1,191 @@
-.Content{
+@mixin flex($justify: center, $align: center) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white, 50%)) {
+    // For Google Chrome
+    &::-webkit-scrollbar {
+        width: $size;
+        height: $size;
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $foreground-color;
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        width: 7px;
+        background: $background-color;
+        border-radius: 5px;
+    }
+
+    // For Internet Explorer
+    & {
+        scrollbar-face-color: $foreground-color;
+        scrollbar-track-color: $background-color;
+        border-radius: 5px;
+    }
+}
+
+$cardsColor: #e2e2e2;
+
+.centrier {
     max-height: 100vh;
     height: 100vh;
     min-height: 100vh;
-    overflow-y: auto;
-    background-color: red;
+    @include flex(center, center);
+    .Content-wrapper {
+        width: 100%;
+        height: 98vh;
+        overflow-y: auto;
+
+        @include scrollbars(7px, #4d4d4d, #ffffff);
+
+        .content {
+            width: 100%;
+            height: 2000px;
+            background-color: #ffffff;
+        }
+    }
+}
+
+.Header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 650px 350px;
+    grid-template-rows: repeat(2, 80px);
+    justify-content: center;
+    grid-column-gap: 30px;
+
+    justify-content: center;
+    align-content: center;
+
+    grid-template-areas:
+        "hello profile"
+        "hello profile";
+    .hello {
+        grid-area: hello;
+
+        position: relative;
+
+        img {
+            height: 160px;
+            position: absolute;
+            right: 70px;
+            bottom: 0;
+            z-index: 2;
+        }
+
+        .Hello-block {
+            width: 100%;
+            height: 90%;
+            border-radius: 15px;
+            background-color: $cardsColor;
+            position: absolute;
+            bottom: 0;
+            z-index: 1;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .text {
+                width: 90%;
+                line-height: 30px;
+                p:first-child {
+                    font-size: 36px;
+                    font-weight: 800;
+                }
+                p {
+                    font-size: 17px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
+    .profSearch-wrapper {
+        position: relative;
+        grid-area: profile;
+        .profSearch {
+            position: absolute;
+            width: 100%;
+            height: 90%;
+            bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+
+            .cardNav {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .search {
+                    width: 200px;
+                    background-color: $cardsColor;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    padding: 5px;
+                    border-radius: 10px;
+                    input {
+                        outline: none;
+                        border: none;
+                        background-color: transparent;
+                    }
+                }
+            }
+
+
+            .Progress{
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: 90px;
+                grid-template-areas: "b1 b2";
+                justify-content: space-between;
+                grid-gap: 20px;
+                
+                div{
+                    background-color: $cardsColor;
+                    border-radius: 15px;
+                    display: flex;
+                    justify-content: center;
+                    font-size: 20px;
+                    font-weight: 700;
+                    text-align: center;
+                    line-height: 25px;
+                    letter-spacing: -1px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    
+                    p{
+                        height: 50px;
+                        width: 90px;
+                    }
+
+                     span{
+                        font-size: 55px;
+                        display: inline;
+                     }
+                }
+
+                .Complited{
+                    grid-area: b1;
+                }
+                .inProgress{
+                    grid-area: b2;
+                }
+
+            }
+        }
+    }
 }
